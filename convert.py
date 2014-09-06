@@ -1,53 +1,48 @@
-<?php
+#! usr/bin/env python
+import re
 
-class CssToSassConverter {
+class CssToSassConverter:
 
-	public function convert ($css) {
-		$selectors = $this->getSelectors($css);
-		$statementBlocks = $this->getStatementBlocks($css);
+	def convert (self, css):
+		selectors = self.getSelectors(css);
+		statementBlocks = self.getStatementBlocks(css)
 
-		$SASS = $this->buildSass($selectors, $statementBlocks);
+		SASS = self.buildSass(selectors, statementBlocks)
 
-		return $SASS;
-	}
+		return SASS
 
-	private function getNtabs($n) {
-		$tabs = '';
+	def __getNtabs(self, n):
+		tabs = ''
 		for ($i = $n; $i > 0; $i--) {
-			$tabs = $tabs . "    ";
+			$tabs = $tabs . "    "
 		}
-		return $tabs;
-	}
+		return tabs
 
-	private function buildSass($selectors, $statementBlocks, $SASS = '', $originalSelectorString = '', $level = 0) {
+	def __buildSass(self, selectors, statementBlocks, sass = '', originalSelectorString = '', level = 0):
 		
-		foreach($selectors as $selector => $children) {
-			$selectorString = $originalSelectorString . ' ' . $selector;
+		foreach($selectors as $selector => $children):
+			selectorString = originalSelectorString + ' ' + selector
 			
-			$SASS = $SASS . "\n\n" . $this->getNtabs($level) . $selector . " {\n";
+			$SASS = $SASS . "\n\n" . $this->getNtabs(level) + selector + ' {\n'
 			$css = $this->getCssForThisSelector($statementBlocks, $selectorString);
-			if (strlen($css) > 0) {
-				$css = $this->getNtabs($level + 1) . str_replace("\n", "\n" . $this->getNtabs($level + 1), $css);
-			}
-			$SASS = $SASS . $css;
+			if (strlen($css) > 0):
+				$css = $this->getNtabs($level + 1) . str_replace("\n", "\n" . $this->getNtabs($level + 1), $css)
 
-			if (count($children) > 0) {
-				$SASS = $this->buildSass($children, $statementBlocks, $SASS, $selectorString, ($level + 1));
-				$SASS = $SASS . "\n" . $this->getNtabs($level) . "}";
-			} else {
-				$SASS = $SASS . "\n" . $this->getNtabs($level) . "}";
-			}
-		}
+			SASS = SASS + css
 
-		return $SASS;
-	}
+			if (children.count() > 0):
+				SASS = $this->buildSass($children, $statementBlocks, $SASS, $selectorString, ($level + 1));
+				SASS = $SASS + "\n" . self.getNtabs($level) + "}"
+			else:
+				SASS = $SASS + "\n" . self.getNtabs($level) + "}"
 
-	private function getCssForThisSelector($statementBlocks, $selectorString) {
+		return SASS
 
-		$selectorString = trim($selectorString);
-		$css = "";
+	def __getCssForThisSelector(statementBlocks, selectorString):
+		selectorString = selectorString.strip()
+		css = ''
 
-		foreach($statementBlocks as $block) {
+		for( block in statementBlocks) {
 			preg_match_all('/\s*' . $selectorString . '\s*{([^}]*)/im', $block, $tmp);
 
 			if (count($tmp[1]) > 0) {
@@ -62,8 +57,8 @@ class CssToSassConverter {
 		return $css;
 	}
 
-	public function getStatementBlocks ($css) {
-		preg_match_all('/([0-9a-zA-Z#: \.\-_]+{([^}]*))/im', $css, $statementBlocks);
+	def getStatementBlocks (css):
+		re.match('/([0-9a-zA-Z#: \.\-_]+{([^}]*))/im', css, statementBlocks)
 		for ($i = 0; $i < count($statementBlocks[0]); $i++) {
 			$statementBlocks[0][$i] = $statementBlocks[0][$i] . '}';
 		}
@@ -72,24 +67,22 @@ class CssToSassConverter {
 		for($i = 0; $i < count($statementBlocks); $i++) {
 			$statementBlocks[$i] = implode("\n", array_map('trim', explode("\n", $statementBlocks[$i])));
 		}
-		return $statementBlocks;
-	}
+		return statementBlocks
 
-	public function getSelectors ($css) {
-		preg_match_all('/([0-9a-zA-Z#: \.\-_]+){[^}]*/im', $css, $selectors);
-		$selectors = $selectors[1];
+	def getSelectors (self, css):
+		re.match('/([0-9a-zA-Z#: \.\-_]+){[^}]*/im', css, self.selectors)
+		selectors = self.selectors[1];
 
-		// remove whitespace from the ends
+		# remove whitespace from the ends
 		for($i = 0; $i < count($selectors); $i++) {
 			$selectors[$i] = trim($selectors[$i]);
 		}
 
-		$selectorsToReturn = $this->convertSelectorsToNestedArray($selectors);
+		selectorsToReturn = self.convertSelectorsToNestedArray(selectors)
 
-		return $selectorsToReturn;
-	}
+		return selectorsToReturn
 
-	/*
+	'''
 	Convert
 		array(
 			".foo .bar",
@@ -105,8 +98,8 @@ class CssToSassConverter {
 				"h1" => array()
 			)
 		)
-	*/
-	private function convertSelectorsToNestedArray ($selectors) {
+	'''
+	def __convertSelectorsToNestedArray (self, selectors):
 
 		$nestedArray = array();
 
@@ -132,7 +125,7 @@ class CssToSassConverter {
 				// and it would be too late - the compiler will have assumed that :last-child was the only
 				// modifier of .something we want to target.
 				// would be pointless for the compiler to output:
-				/*
+				'''
 					.something {
 						
 						&:last-child {
@@ -140,7 +133,7 @@ class CssToSassConverter {
 						}
 
 					}
-				*/
+				'''
 
 				if (!$tmpArray[$chunk]) {
 					$tmpArray[$chunk] = array();
@@ -150,6 +143,5 @@ class CssToSassConverter {
 			unset($tmpArray);
 		}
 
-		return $nestedArray;
-	}
-}
+		return nestedArray
+

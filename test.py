@@ -4,10 +4,10 @@ import expect
 
 try {
 
-	$converter = new CssToSassConverter();
-	$expect = new Expect();
+	converter = CssToSassConverter()
+	expect = Expect()
 
-	$expect->equal(
+	expect->equal(
 		$converter->getStatementBlocks($testData),
 		array(
 '#my_element h1 {
@@ -47,30 +47,30 @@ font-weight: bold;
 		)
 	);
 
-	/*
+	'''
 		Version 2.0 for this
-	*/
-	//  $expect->equal(
-	// 	$converter->getSelectors($testData),
-	// 	array(
-	// 		'#my_element' => array(
-	// 			'h1' => array(),
-	// 			'ul.test' => array(
-	// 				'.list-item' => array(
-	// 					'&:last-child' => array()
-	// 				)
-	// 			)
-	// 		)
-	// 	)
-	// );
+	'''
+	#  $expect->equal(
+	# 	$converter->getSelectors($testData),
+	# 	array(
+	# 		'#my_element' => array(
+	# 			'h1' => array(),
+	# 			'ul.test' => array(
+	# 				'.list-item' => array(
+	# 					'&:last-child' => array()
+	# 				)
+	# 			)
+	# 		)
+	# 	)
+	# );
 
 	$expect->equal(
 		$converter->convert($testData),
 		$expectedOutput
-	);
+	)
 
-	print "\nAll tests passed. \n";
+	print "\nAll tests passed. \n"
 
 } catch (Exception $e) {
-	echo $e->getMessage() . "\n\n";
+	echo $e->getMessage() . "\n\n"
 }
