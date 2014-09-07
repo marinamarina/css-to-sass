@@ -1,0 +1,31 @@
+# Compiled bytecode
+*.pyc
+*.pyo
+
+# Local TODO notes
+TODO
+
+# Coverage files
+*.coverage
+htmlcov
+cover
+
+# Temporary files
+*~
+
+# Database files
+*.sqlite
+
+# Virtualenvironments
+sandbox*/
+venv*/
+
+# Build artifacts from python setup.py build or python setup.py install
+build/
+dist/
+*egg*/
+docs/_build
+
+Various
+.DS_Store
+
