@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/css-to-sass.iml" filepath="$PROJECT_DIR$/.idea/css-to-sass.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../py-playground/.idea/py-playground.iml" filepath="$PROJECT_DIR$/../py-playground/.idea/py-playground.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../untitled folder/.idea/untitled folder.iml" filepath="$PROJECT_DIR$/../untitled folder/.idea/untitled folder.iml" />
     </modules>
   </component>
 </project>

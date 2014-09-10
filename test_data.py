@@ -1,6 +1,6 @@
-<?php
+#!/usr/bin/python
 
-$testData = "
+testData = '''
 
 #my_element h1 {
     font-weight: bold;
@@ -22,10 +22,9 @@ $testData = "
 
 #my_element ul.test .list-item:last-child {
     font-weight: bold;
-}
-";
+}'''
 
-$expectedOutput = "
+expectedOutput = '''
 
 #my_element {
 
@@ -48,4 +47,4 @@ $expectedOutput = "
             font-weight: bold;
         }
     }
-}";
+}'''
