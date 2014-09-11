@@ -1,6 +1,6 @@
 import unittest
 
-from my_app.convert import CssToSassConverter
+from converter.convert import CssToSassConverter
 
 
 class TestCssToSassConverter(unittest.TestCase):
@@ -48,17 +48,17 @@ class TestCssToSassConverter(unittest.TestCase):
 
 
     def test_get_n_tabs (self):
-        self.assertEquals(self.converter.get_n_tabs(1), '    ', "get_n_tabs returns 1 tab")
-        self.assertEquals(self.converter.get_n_tabs(2), '        ', "get_n_tabs return 2 tabs")
+        self.assertEquals(self.converter._CssToSassConverter__get_n_tabs(1), '    ', "get_n_tabs returns 1 tab")
+        self.assertEquals(self.converter._CssToSassConverter__get_n_tabs(2), '        ', "get_n_tabs return 2 tabs")
 
     def test_get_css_for_this_selector(self):
-        self.assertEquals(self.converter.get_css_for_this_selector(self.statement_blocks, self.selectors_list[0]), 'text-decoration:none;')
+        self.assertEquals(self.converter._CssToSassConverter__get_css_for_this_selector(self.statement_blocks, self.selectors_list[0]), 'text-decoration:none;')
 
         # test multiple occurrences of the selector in css, '.foo .bar p' repeats two times
-        self.assertEquals(self.converter.get_css_for_this_selector(self.statement_blocks, self.selectors_list[1]), 'margin-bottom:1em;\ncolor:#505050;\nbackground:black;\npadding:0;')
+        self.assertEquals(self.converter._CssToSassConverter__get_css_for_this_selector(self.statement_blocks, self.selectors_list[1]), 'margin-bottom:1em;\ncolor:#505050;\nbackground:black;\npadding:0;')
 
     def test_convert_selectors_to_nested_dict(self):
-        self.assertEquals(self.converter.convert_selectors_to_nested_dict(self.selectors_list), self.selectors_nested_dictionary)
+        self.assertEquals(self.converter._CssToSassConverter__convert_selectors_to_nested_dict(self.selectors_list), self.selectors_nested_dictionary)
 
     def test_get_selectors (self):
         self.assertEquals(self.converter.get_selectors(self.test_data), self.selectors_nested_dictionary)
