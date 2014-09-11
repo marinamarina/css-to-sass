@@ -7,12 +7,12 @@ Introducting the *CSS-to-SASS converter*, written in Python. Still an early prot
 ## Usage
 
 ```
-git clone https://github.com/marinamarinacss-to-sass.git
+git clone https://github.com/marinamarina/css-to-sass.git
 
 cd css-to-sass
 
-chmod +x test.py
-python test.py
+chmod +x run.py
+python run.py
 ```
 
 (This is as far as I've got so far. Amend the code to your requirements as necessary.)
