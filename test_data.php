@@ -1,31 +1,28 @@
-<?php
+#!/usr/bin/python
 
-$testData = "
+testData = '''
 
-#my_element h1 {
-    font-weight: bold;
-}
-
-#my_element ul.test {
-    list-style-type: none
-}
-
-#my_element ul.test {
+#marina ul.test {
+    list-style-type: none;
     color: white;
     background: black;
 }
 
-#my_element ul.test .list-item {
+#marina ul.test .list-item a {
     text-decoration: none;
+<<<<<<< HEAD:test_data.py
     color: #737373;
 }
 
 #my_element ul.test .list-item:last-child {
     font-weight: bold;
+}'''
+=======
 }
 ";
+>>>>>>> master:test_data.php
 
-$expectedOutput = "
+expectedOutput = '''
 
 #my_element {
 
@@ -48,4 +45,8 @@ $expectedOutput = "
             font-weight: bold;
         }
     }
+<<<<<<< HEAD:test_data.py
+}'''
+=======
 }";
+>>>>>>> master:test_data.php

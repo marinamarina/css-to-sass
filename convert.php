@@ -160,4 +160,8 @@ class CssToSassConverter {
 		}
 		return $tabs;
 	}
+<<<<<<< HEAD:convert.py
 }
+=======
+}
+>>>>>>> 591c67957c0e22b7cb656261accd5e7e39e1d665:convert.php
