@@ -1,10 +1,7 @@
 #!/usr/bin/python
 
-from convert import CssToSassConverter
-import string
-import re
+from my_app.convert import CssToSassConverter
 
-converter = CssToSassConverter()
 statement_string='''.foo .bar p {
     list-style-type: none;
     color: white;
@@ -17,5 +14,7 @@ statement_string='''.foo .bar p {
 color: red;
 }'''
 
-print converter.convert(statement_string)
+converter = CssToSassConverter()
+
+print converter.get_statement_blocks(statement_string)
 
