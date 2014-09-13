@@ -4,8 +4,17 @@ import sys
 from converter.convert import CssToSassConverter
 
 if len(sys.argv) == 3:
-    inname, outname = sys.argv[1:3]
-    converter = CssToSassConverter(css_file=inname, sass_file=outname)
+
+    # create files dictionary comprehension
+    # using filename from CssToSassConverter.default_options as a key
+    # and command line arguments as a value
+    files = {filename_key : sys.argv[index+1]
+             for index, filename_key
+             in enumerate(CssToSassConverter.default_options)
+    }
+
+    # unpacking the dictionary files, providing user chosen filenames
+    converter = CssToSassConverter(**files)
 else:
   converter = CssToSassConverter()
 
