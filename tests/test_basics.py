@@ -1,7 +1,5 @@
 import unittest
-
 from converter.convert import CssToSassConverter
-
 
 class TestCssToSassConverter(unittest.TestCase):
 
@@ -48,8 +46,8 @@ class TestCssToSassConverter(unittest.TestCase):
 
 
     def test_get_n_tabs (self):
-        self.assertEquals(self.converter._CssToSassConverter__get_n_tabs(1), '    ', "get_n_tabs returns 1 tab")
-        self.assertEquals(self.converter._CssToSassConverter__get_n_tabs(2), '        ', "get_n_tabs return 2 tabs")
+        self.assertEquals(self.converter._CssToSassConverter__get_n_tabs(1), '    ', "get_n_tabs did not return 1 tab")
+        self.assertEquals(self.converter._CssToSassConverter__get_n_tabs(2), '        ', "get_n_tabs did not return 2 tabs")
 
     def test_get_css_for_this_selector(self):
         self.assertEquals(self.converter._CssToSassConverter__get_css_for_this_selector(self.statement_blocks, self.selectors_list[0]), 'text-decoration:none;')

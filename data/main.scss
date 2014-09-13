@@ -1,0 +1,19 @@
+
+#my_element {
+
+    ul.test {
+        list-style-type:none
+        color:white;
+        background:black;
+        .list-item:last-child {
+            font-weight:bold;
+        }
+        .list-item {
+            text-decoration:none;
+            color:#737373;
+        }
+    }
+    h1 {
+        font-weight:bold;
+    }
+}

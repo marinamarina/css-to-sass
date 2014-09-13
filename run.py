@@ -1,30 +1,13 @@
 #!/usr/bin/python
 
+import sys
 from converter.convert import CssToSassConverter
 
-statement_string='''#my_element h1 {
-    font-weight: bold;
-}
+if len(sys.argv) == 3:
+    inname, outname = sys.argv[1:3]
+    converter = CssToSassConverter(css_file=inname, sass_file=outname)
+else:
+  converter = CssToSassConverter()
 
-#my_element ul.test {
-    list-style-type: none
-}
-
-#my_element ul.test {
-    color: white;
-    background: black;
-}
-
-#my_element ul.test .list-item {
-    text-decoration: none;
-    color: #737373;
-}
-
-#my_element ul.test .list-item:last-child {
-    font-weight: bold;
-}'''
-
-converter = CssToSassConverter()
-
-print converter.convert(statement_string)
-
+if __name__ == "__main__":
+    converter.write_results_to_file()
