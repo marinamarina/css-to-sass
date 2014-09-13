@@ -19,8 +19,10 @@ Place your css code into the file data/main.css
 chmod +x run.py
 python run.py
 
-You can find the converted data in main.scss file
 ```
+
+You can find the converted data in main.scss file
+
 ## Variable arguments
 If you would like to specify other file locations, you can use this command:
 
