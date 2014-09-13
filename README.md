@@ -10,15 +10,19 @@ Introducting the *CSS-to-SASS converter*, written in Python. Still an early prot
 git clone https://github.com/marinamarina/css-to-sass.git
 
 cd css-to-sass
+```
 
 Input and output data are located in the data folder
 Place your css code into the file data/main.css
 
+```
 chmod +x run.py
 python run.py
 
-You can find the converted data in main.scss file
 ```
+
+You can find the converted data in main.scss file
+
 ## Variable arguments
 If you would like to specify other file locations, you can use this command:
 
